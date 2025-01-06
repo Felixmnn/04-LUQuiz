@@ -1,13 +1,12 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Image, Platform } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
@@ -18,19 +17,16 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+          borderTopWidth: 0,
+          backgroundColor:"#1f3f70"
+        }
       }}>
         <Tabs.Screen
         name="explore"
         options={{
           title: 'Quiz',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Image style={{ height:30, width:30}} tintColor={color} source={require("../../assets/Icons/Choice.png")}/>,
         }}
       />
       <Tabs.Screen
@@ -44,7 +40,7 @@ export default function TabLayout() {
         name="progress"
         options={{
           title: 'Progress',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Image style={{ height:30, width:30}} tintColor={color} source={require("../../assets/Icons/Progress.png")}/>,
         }}
       />
       
