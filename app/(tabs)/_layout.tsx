@@ -26,6 +26,13 @@ export default function TabLayout() {
           default: {},
         }),
       }}>
+        <Tabs.Screen
+        name="explore"
+        options={{
+          title: 'Quiz',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        }}
+      />
       <Tabs.Screen
         name="index"
         options={{
@@ -34,12 +41,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="progress"
         options={{
-          title: 'Explore',
+          title: 'Progress',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
+      
     </Tabs>
   );
 }
