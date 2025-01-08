@@ -33,7 +33,11 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(details)" options={{ headerShown: false }}/>
+        <Stack.Screen name="(quiz)" options={{ headerShown: false }}/>
+
       </Stack>
+
       <StatusBar style="auto" />
     </ThemeProvider>
   );

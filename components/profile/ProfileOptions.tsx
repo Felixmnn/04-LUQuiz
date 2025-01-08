@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const report = () => {
+const ProfileOptions = ({data}) => {
   return (
     <View>
-      <Text>report</Text>
+      <Text>ProfileOptions</Text>
     </View>
   )
 }
 
-export default report
+export default ProfileOptions

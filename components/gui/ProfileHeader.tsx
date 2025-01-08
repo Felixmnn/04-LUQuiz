@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
 
-const ProfileHeader = ({name,welcomeMessage,imageSource , handlePress, isLoading}) => {
+const ProfileHeader = ({name,welcomeMessage,imageSource , handlePress, isLoading, textStyle}) => {
   return (
     <TouchableOpacity 
         className='flex-row m-2'
@@ -14,8 +14,8 @@ const ProfileHeader = ({name,welcomeMessage,imageSource , handlePress, isLoading
             {imageSource?<Image style={{ height: 40, width: 40, borderRadius: 20 }} source={imageSource}  /> : null}
         </View>
         <View >
-            <Text className='font-semibold'>{welcomeMessage?welcomeMessage:"Welcome"}</Text>
-            <Text>{name?name:"[Name]"}</Text>
+            <Text className='font-semibold text-white'>{welcomeMessage?welcomeMessage:"Welcome"}</Text>
+            <Text className='text-white'>{name?name:"[Name]"}</Text>
         </View>
     </TouchableOpacity>
   )
