@@ -15,7 +15,7 @@ const YourPorjects = ({project,setSelectedProject,selecetedProject}) => {
 
 
   return (
-    <View className='h-[150px] bg-primary rounded-[5px] w-full max-w-[500px] m-2 flex-row justify-between items-center'>
+    <View className='h-[150px] bg-primary rounded-[5px] w-[96%] max-w-[500px] m-2 flex-row justify-between items-center'>
       <CustomButton containerStyles={"bg-white justify-center"} title={"<"} textStyles={"text-black font-bold text-xl"} handlePress={()=> setSelectedProject(-1)}/>
         <ProjectBanner projectName={project.projectName}
             projectPercentage={project.projectPercentage}

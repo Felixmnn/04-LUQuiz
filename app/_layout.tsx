@@ -29,17 +29,20 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
+  //    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> 
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={DefaultTheme}> 
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }}   />
         <Stack.Screen name="(details)" options={{ headerShown: false }}/>
         <Stack.Screen name="(quiz)" options={{ headerShown: false }}/>
+        <Stack.Screen name="index" options={{ headerShown: false }}/>
 
-      </Stack>
+        </Stack>
         <Toast/>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
+
     </ThemeProvider>
   );
 }

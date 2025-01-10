@@ -9,7 +9,7 @@ const CustomButton = ({title,containerStyles,textStyles, handlePress,isLoading})
         disabled = {isLoading}
         activeOpacity={0.7}
         >
-        <Text className={`text-white font-semibold ${textStyles}`}>{title}</Text>
+        <Text className={`text-white font-semibold text-xl ${textStyles}`}>{title}</Text>
     </TouchableOpacity>
   )
 }
