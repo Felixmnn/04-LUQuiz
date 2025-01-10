@@ -10,10 +10,16 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import SystemDeutschlands from "../../assets/questions/Einführungsvorlesung Das Politische System Deutschlands.json"
 import SystemAllgemein from "../../assets/questions/Einführungsvorlesung Forschungsdesign in der Politikwissenschaft.json"
 import SystemOderSo from "../../assets/questions/Einführungsvorlesung Vergleichende Politikwissenschaft.json"
-
+import { GlobalContext } from '@/context/GlobalProvider';
+import { useContext, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 export default function TabTwoScreen() {
+  const { state, setState } = useContext(GlobalContext);
+  const projects = state.projekte
+
+  
   const modes = [ {name:"Bullet",source:"", question:5, duration:60},
                   {name:"Blitz",source:"", question:10, duration:300},
                   {name:"Quick",source:"", question:20, duration:900},
@@ -26,6 +32,7 @@ export default function TabTwoScreen() {
   //Async Storage gets projets
 
   const projectList = [SystemDeutschlands,SystemAllgemein,SystemOderSo]
+  /*
   const projects = [{ 
     projectName:"System Deutschland", 
     projectPercentage: 1, 
@@ -53,6 +60,7 @@ export default function TabTwoScreen() {
     projectBanner:"../../assets/images/splash.png"
   }
 ]
+  */
   const [selecetedProject, setSelectedProject] = useState(0)
     function changeProject (value){
       if (selecetedProject == projects.length -1  && value == +1){
@@ -147,8 +155,10 @@ export default function TabTwoScreen() {
 
   return (
     <SafeAreaView className="flex-1 items-center">
+      
             <Text className="text-white font-bold text-2xl text-center w-full p-3 bg-primary">Start A Quiz</Text>
             <View className="h-[1px] w-full bg-primary" />
+            { projects ?
       <ScrollView className="w-full">
         <View className="w-full items-center mb-5">
       <YourPorjects setSelectedProject={changeProject} 
@@ -187,6 +197,10 @@ export default function TabTwoScreen() {
 
           </View>
         </ScrollView>
+
+        :
+        <CustomButton title={"create your first project"}/>
+      }
     </SafeAreaView>
   )
 };

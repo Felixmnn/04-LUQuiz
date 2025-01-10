@@ -6,9 +6,16 @@ import SystemOderSo from "../../assets/questions/Einführungsvorlesung Vergleich
 import CustomButton from '@/components/gui/CustomButton'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { router } from 'expo-router'
+import { GlobalContext } from '@/context/GlobalProvider';
+import { useContext,useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const progress = () => {
   const projectList = [SystemDeutschlands,SystemAllgemein,SystemOderSo]
+  const { state, setState } = useContext(GlobalContext);
+  const projects = state.projekte
+ 
+    /*
   const projects = [{ 
     projectName:"System Deutschland", 
     projectPercentage: 1, 
@@ -36,6 +43,7 @@ const progress = () => {
     projectBanner:"../../assets/images/splash.png"
   }
 ]
+  */
 
   const [selecetedProject, setSelectedProject] = useState(0)
   const [showAllQuestions, setShowAllQuestions ] = useState([])
@@ -74,8 +82,12 @@ const keys = Object.keys(projectList[selecetedProject])
 
   return (
     <ScrollView>
+            <Text className="text-white font-bold text-2xl text-center w-full p-3 bg-primary">Project Progress</Text>
+
+      {
+        projects ? 
+      
       <View className='w-full items-center'>
-      <Text className="text-white font-bold text-2xl text-center w-full p-3 bg-primary">Project Progress</Text>
       <View className='w-full max-w-[600px] bg-blue-300 border border-blue-400 border-[3px] p-2 my-2 rounded-[5px]'>
       <View className='flex-row justify-between items-center rounded-[5px]'>
         <CustomButton containerStyles={"bg-white justify-center h-[30px]"} title={"<"} textStyles={"text-black font-bold text-xl"} handlePress={()=> changeProject(-1)}/>
@@ -132,8 +144,12 @@ const keys = Object.keys(projectList[selecetedProject])
         </View>
         </View>
         
+        
         <CustomButton title={"Add A Project"} containerStyles={"items-center max-w-[150px]"} handlePress={()=> router.push("/allquizzes")}/>
       </View>
+        :
+        <CustomButton title={"Create your first Projetc"}/>
+}
     </ScrollView>
   )
 }

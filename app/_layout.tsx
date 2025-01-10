@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import "../styles.css";
 import Toast from 'react-native-toast-message';
-
+import { GlobalProvider } from "../context/GlobalProvider"
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -32,17 +32,18 @@ export default function RootLayout() {
   //    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> 
 
   return (
-    <ThemeProvider value={DefaultTheme}> 
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }}   />
-        <Stack.Screen name="(details)" options={{ headerShown: false }}/>
-        <Stack.Screen name="(quiz)" options={{ headerShown: false }}/>
-        <Stack.Screen name="index" options={{ headerShown: false }}/>
+    <ThemeProvider value={DefaultTheme}>
+      <GlobalProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }}   />
+            <Stack.Screen name="(details)" options={{ headerShown: false }}/>
+            <Stack.Screen name="(quiz)" options={{ headerShown: false }}/>
+            <Stack.Screen name="index" options={{ headerShown: false }}/>
 
-        </Stack>
-        <Toast/>
-      <StatusBar style="light" />
-
+            </Stack>
+            <Toast/>
+          <StatusBar style="light" />
+        </GlobalProvider>
     </ThemeProvider>
   );
 }
