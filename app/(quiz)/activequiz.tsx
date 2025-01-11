@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import questions from "../../assets/questions/10Questions.json"
 import Sitzung_5_Foederalismus from "../../assets/questions/Einführungsvorlesung Das Politische System Deutschlands.json"
 import CustomButton from '@/components/gui/CustomButton'
@@ -10,6 +10,7 @@ import QuestionDetails from '@/components/quiz/QuestionDetails'
 import QuizHeader from '@/components/quiz/QuizHeader'
 import Answers from '@/components/quiz/Answers'
 import { useLocalSearchParams } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const activequiz = () => {
@@ -24,6 +25,44 @@ const activequiz = () => {
     const [ currentQuestion, setCurrentQuestion ] = useState(0)
     const [ answers, setAnswer ] = useState([])
     const [ answersShown, setAnsersShown ] = useState(true)
+    const [ project, setProject  ] = useState({})
+    const [ isLoading, setIsLoading ] = useState(false)
+    const [ allEntrysMade, setAllEntrysMade] = useState(false)
+
+    async function endQuiz (state){
+        setIsLoading(true)
+        const projectString = await AsyncStorage.getItem("Project-System Deutschland")
+        const parsedProject = JSON.parse(projectString)
+        const newArray = parsedProject.projectQuestionLog
+        console.log(newArray)
+        if (answers.length <= 0){
+            console.log("Cringe einfach keine Antworten")
+        } else {
+            for (let i = 0; i < answers.length; i++){
+                const question  = quizFragen[answers[i].question]
+
+                if (
+                    question.correctAnswers.length === answers[i].answers.length &&
+                    question.correctAnswers.sort().every((value, index) => value === answers[i].answers.sort()[index])
+                  ){
+                    console.log("I added 1 to your counter")
+                    newArray[question.id-1] = newArray[question.id-1] +1 
+                } else {
+                    console.log("Question Answers:", question, "dont match your ANswers", )
+                    newArray[question.id-1] = newArray[question.id-1] -1 
+                }
+            }
+        } 
+        console.log(newArray)
+        setProject((prevState)=> ({
+            ...prevState,
+            projectQuestionLog: newArray
+        }))
+        setFragenAbgeschlossen(state)
+        setAllEntrysMade(true)
+        setIsLoading(false)
+
+    }
 
     function restartGame () {
         setFragenAbgeschlossen(false)
@@ -31,7 +70,15 @@ const activequiz = () => {
         setCurrentQuestion(0)
     }
     
-
+    useEffect (()=> {
+        async function saveProgress() {
+            await AsyncStorage.setItem("Project-System Deutschland",JSON.stringify(project))
+        }
+        if(allEntrysMade){
+            saveProgress()
+            console.log("Updated your Porgress :)")
+        }
+    },[allEntrysMade])
  
   return (
     <View className='flex-1'>
@@ -47,7 +94,7 @@ const activequiz = () => {
                                             questionIndex = {currentQuestion}
                                             />
                             <QuestionNavigation
-                                            finishQuiz={setFragenAbgeschlossen} 
+                                            finishQuiz={endQuiz} 
                                             questionsLength={questionsLength}
                                             currentQuestion = {currentQuestion}
                                             changeQuestion = {setCurrentQuestion}
@@ -62,7 +109,7 @@ const activequiz = () => {
                     { !examMode ? 
                             <QuestionDetails 
                                             question={quizFragen[currentQuestion]} 
-                                            finishQuiz={setFragenAbgeschlossen}
+                                            finishQuiz={endQuiz}
                                             showAnswers = {setAnsersShown}
                                             shownAnsers = {answersShown}
                                             /> : null}
@@ -73,6 +120,7 @@ const activequiz = () => {
                             <RenderResults  answers={answers} 
                                             questions={quizFragen} 
                                             restartGame={() => restartGame()}
+                                            isLoading = {isLoading}
                                             />
         }
     </View>

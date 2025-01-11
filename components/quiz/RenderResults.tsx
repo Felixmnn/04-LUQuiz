@@ -3,7 +3,7 @@ import CustomButton from '../gui/CustomButton'
 import { router } from 'expo-router'
 import { useEffect, useState } from 'react'
 
-const RenderResults = ({answers, questions, restartGame}) => {
+const RenderResults = ({answers, questions, restartGame, isLoading}) => {
   //question: questionIndex, answers: [answerIndex] 
   const [showAnswers, setShowAnswers] = useState(["test"])
 
@@ -34,7 +34,7 @@ const RenderResults = ({answers, questions, restartGame}) => {
         questions.map((question, index) => {
 
           const yourAnswers = answers && answers.find(answer => answer.question === index)?.answers || null;
-          console.log("Deine Antwort",yourAnswers,"Die richtige Antwort",question.correctAnswers)
+          //console.log("Deine Antwort",yourAnswers,"Die richtige Antwort",question.correctAnswers)
           return (
           <TouchableOpacity
             key={index} // Einzigartiger Schlüssel für jedes TouchableOpacity
@@ -67,8 +67,8 @@ const RenderResults = ({answers, questions, restartGame}) => {
         )})
       }
       <View className='flex-row justify-center'>
-      <CustomButton title={"Home"} handlePress={()=> router.push("/home")} containerStyles={"w-[150px]  items-center"}/>
-      <CustomButton title={"Restart Game"}  handlePress={restartGame} containerStyles={"w-[150px]  items-center"}/>
+      <CustomButton title={"Home"} handlePress={()=> router.push("/home")} containerStyles={"w-[150px]  items-center"} isLoading={isLoading}/>
+      <CustomButton title={"Try Again"}  handlePress={restartGame} containerStyles={"w-[150px]  items-center"} isLoading={isLoading}/>
       </View>
       </View>
     </ScrollView>

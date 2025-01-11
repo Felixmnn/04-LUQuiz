@@ -20,7 +20,7 @@ export default function HomeScreen() {
   const { state, setState } = useContext(GlobalContext);
   const projects = state.projekte
   
-  const projectList = [SystemDeutschlands,SystemAllgemein,SystemOderSo]
+  const projectList = ["SystemDeutschlands","SystemAllgemein","SystemOderSo"]
   console.log(state.projekte)
 
   /*
@@ -89,7 +89,7 @@ const projects = [{
           <View className='w-full max-w-[600px] ' >
               <Text className='font-semibold text-xl'>All Quizzes</Text>
               <FlatList
-                  data={projects}
+                  data={projectList}
                   keyExtractor={(item) =>  item}
                   renderItem={ ({item}) => {
                     return (
@@ -97,7 +97,7 @@ const projects = [{
                         className='flex-wrap p-2 bg-[#fff] mt-2 rounded-[5px] w-full bg-blue-200 border border-[2px] border-blue-300 max-w-[600px]'
                         activeOpacity={0.7}
                         >
-                        <Text className='text-center'>{item.projectName}</Text>
+                        <Text className='text-center'>{item}</Text>
                       </TouchableOpacity>
                     )
                   }

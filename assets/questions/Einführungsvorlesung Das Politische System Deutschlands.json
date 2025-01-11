@@ -1,24 +1,4 @@
 {
-    "Vorlesung 1": [
-        {
-            "frage": "Was ist die Hauptstadt von Deutschland?",
-            "antworten": [
-                "a) Berlin",
-                "b) München",
-                "c) Hamburg"
-            ],
-            "correctAnswers": [
-                0
-            ],
-            "extractedText": "Hier kommt der Text, der analysiert wurde.",
-            "extractedPage": "Seite 1",
-            "extractedSession": "Sitzung 1",
-            "extractedPro": "Prof. Dr. Beispiel",
-            "extractedLecture": "Einführung in die Programmierung",
-            "ectractLectureName": "Vorlesung 1",
-            "id": 0
-        }
-    ],
     "Grundgesetzänderung": [
         {
             "frage": "Welche finanziellen Regelungen finden sich in der deutschen Finanzverfassung von 1969?",
