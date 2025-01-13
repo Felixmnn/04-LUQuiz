@@ -10,7 +10,6 @@ const index = () => {
   const [isLoading , setIsLoading] = useState(true)
   const { state, setState } = useContext(GlobalContext);
 
-
   useEffect(()=> {
     async function getProject(){
                 const keys = await AsyncStorage.getAllKeys()
