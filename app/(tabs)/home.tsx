@@ -17,6 +17,8 @@ import { useContext, useEffect } from 'react';
 
 
 export default function HomeScreen() {
+  const colorScheme = useColorScheme();
+
   const { state, setState } = useContext(GlobalContext);
   const projects = state.projekte
   

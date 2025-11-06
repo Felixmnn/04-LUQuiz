@@ -1,50 +1,33 @@
-# Welcome to your Expo app 👋
+> **⚠️ This app is no longer maintained**  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# LUQuiz
 
-## Get started
+LUQuiz is a React Native Expo app designed for offline quiz-based learning. It was the precursor to QReady and allows users to import pre-made learning sets and track their progress entirely offline.
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+## About the App
 
-2. Start the app
+LUQuiz was created as a standalone app for offline learning. Users can import pre-made learning sets and use various filters to customize their quizzes, such as:
 
-   ```bash
-    npx expo start
-   ```
+- Number of correct answers
+- Time limits
+- And more
 
-In the output, you'll find options to open the app in a
+The app stores progress locally using AsyncStorage, allowing users to track their learning performance over time. LUQuiz operates entirely offline and is independent of any external services.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Technologies
 
-## Get a fresh project
+- **AsyncStorage**: For local data storage.
+- **File Import**: To load learning sets into the app.
+- **Appwrite Backend**: To make Learn sets available to all users.  
+  *Note: Due to the Appwrite 2 collection limitation, this feature no longer works as no database is now archived.*
+- **Python Repository**: This app can be used in combination with my Python repository to generate questions. For example, it can convert PDF files into JSON files with the required question format using the OpenAI API.
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## Usage
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+The code behind LUQuiz is available for educational purposes. However, it should not be copied directly for other projects.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
